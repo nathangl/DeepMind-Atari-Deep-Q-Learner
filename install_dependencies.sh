@@ -124,7 +124,8 @@ rm -rf lua-gd
 git clone https://github.com/ittner/lua-gd.git
 cd lua-gd
 sed -i "s/LUABIN=lua5.1/LUABIN=..\/..\/bin\/luajit/" Makefile
-$PREFIX/bin/luarocks make
+$PREFIX/bin/luarocks make GDFEATURES="-DGD_PNG -DGD_GIF -DGD_JPEG -DGD_XPM -DGD_FREETYPE -DGD_FONTCONFIG"
+cp gd.so $PREFIX/lib/lua/5.1/
 RET=$?; if [ $RET -ne 0 ]; then echo "Error. Exiting."; exit $RET; fi
 echo "Lua-GD installation completed"
 
